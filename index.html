@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Saurabh Bansal &middot; RGIPT</title>
+<meta name="description" content="Dr. Saurabh Bansal, Assistant Professor, Department of Mathematical Sciences, RGIPT Jais. Computational finance, numerical analysis and scientific machine learning.">
+<style>
+* { box-sizing: border-box; }
+body {
+  margin:0; background:#FAF9F7; color:#1E2124;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size:15.5px; line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:#9A5A2A; text-decoration:none; }
+a:hover { text-decoration:underline; }
+.wrap { max-width:1000px; margin:0 auto; padding:0 26px; }
+
+/* top strip */
+.topstrip {
+  background:#16181B; color:rgba(255,255,255,.60);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:10.5px; letter-spacing:.24em; text-transform:uppercase;
+  padding:7px 0;
+}
+
+/* masthead */
+.masthead {
+  background:linear-gradient(100deg, #262A2F 0%, #363C43 100%);
+  color:#fff; padding:26px 0 24px;
+  border-bottom:3px solid #C0783E;
+  position:relative;
+}
+.masthead::after {
+  content:""; position:absolute; left:0; right:0; bottom:-3px; height:3px;
+  background:linear-gradient(90deg, #C0783E 0%, rgba(255,255,255,.55) 50%, #C0783E 100%);
+}
+.masthead .inst {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:rgba(255,255,255,.72); margin-bottom:9px;
+}
+.masthead h1 {
+  margin:0; font-size:32px; font-weight:normal; letter-spacing:.005em;
+}
+.masthead .sub {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:12.5px; letter-spacing:.06em;
+  color:rgba(255,255,255,.80); margin-top:7px;
+}
+
+/* tabs */
+.tabs { background:#EEEDEA; border-bottom:1px solid #D8D6D1; }
+.tabs .wrap { display:flex; flex-wrap:wrap; }
+.tab {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:12px; letter-spacing:.11em; text-transform:uppercase;
+  color:#63686E; background:transparent; border:none;
+  padding:12px 20px; cursor:pointer;
+  border-bottom:3px solid transparent;
+  transition:color .16s, background .16s, border-color .16s;
+}
+.tab:hover { color:#2B3037; background:rgba(0,0,0,.035); }
+.tab.on {
+  color:#2B3037; font-weight:bold; background:#FFFFFF;
+  border-bottom-color:#C0783E;
+}
+
+/* body */
+main { padding:34px 0 54px; }
+.panel[hidden] { display:none; }
+
+h2 {
+  font-size:20px; font-weight:normal; color:#2B3037;
+  margin:34px 0 0; padding-bottom:7px;
+  border-bottom:1px solid #E1DFDA;
+  position:relative;
+}
+h2::after {
+  content:""; position:absolute; left:0; bottom:-1px; width:58px; height:2px;
+  background:#C0783E;
+}
+h2:first-of-type { margin-top:4px; }
+h2.plain { border:none; padding:0; font-size:23px; margin:0; }
+h2.plain::after { display:none; }
+h3 {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:11px; color:#8E5729; margin:24px 0 6px;
+  text-transform:uppercase; letter-spacing:.15em; font-weight:bold;
+}
+p { margin:13px 0; }
+
+ul.list { margin:14px 0; padding-left:0; list-style:none; }
+ul.list li { margin-bottom:9px; padding-left:19px; position:relative; }
+ul.list li::before {
+  content:""; position:absolute; left:0; top:.68em;
+  width:6px; height:6px; background:#C0783E; transform:rotate(45deg);
+}
+
+/* profile */
+.profile { display:flex; gap:30px; align-items:flex-start; margin-bottom:8px; }
+.profile img {
+  width:172px; height:172px; object-fit:cover; flex-shrink:0;
+  border:1px solid #E1DFDA; padding:5px; background:#FFFFFF;
+  box-shadow:0 2px 10px rgba(0,0,0,.09);
+}
+.profile .who .role {
+  font-style:italic; color:#8E5729; margin:3px 0 12px; font-size:15.5px;
+}
+.profile .who p { margin:3px 0; font-size:14.5px; }
+.profile .who .links { margin-top:15px; }
+.profile .who .links a {
+  font-family:Arial, Helvetica, sans-serif;
+  display:inline-block; font-size:10.5px; letter-spacing:.11em; text-transform:uppercase;
+  border:1px solid #E1DFDA; color:#9A5A2A; padding:6px 12px; margin:0 7px 7px 0;
+  transition:all .16s;
+}
+.profile .who .links a:hover {
+  background:#262A2F; border-color:#262A2F; color:#fff; text-decoration:none;
+}
+
+/* tables */
+table.rec { width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px; }
+table.rec td { padding:10px 12px 10px 0; border-bottom:1px solid #E1DFDA; vertical-align:top; }
+table.rec tr:last-child td { border-bottom:none; }
+table.rec tr:hover td { background:rgba(0,0,0,.018); }
+table.rec td.yr {
+  width:140px; color:#8E5729; white-space:nowrap;
+  font-family:Arial, Helvetica, sans-serif; font-size:11px;
+  letter-spacing:.07em; text-transform:uppercase; padding-top:12px;
+}
+table.rec td.no {
+  width:36px; color:#C0783E; font-family:Arial, Helvetica, sans-serif;
+  font-size:11.5px; padding-top:12px;
+}
+table.rec b { color:#2B3037; font-weight:bold; }
+table.rec span.sub { display:block; color:#63686E; font-size:13.5px; margin-top:2px; }
+table.rec em { color:#63686E; font-style:italic; }
+
+.note {
+  background:#FFFFFF; border-left:3px solid #C0783E;
+  padding:12px 16px; margin:16px 0; font-size:14px; color:#63686E;
+  box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+.tag {
+  font-family:Arial, Helvetica, sans-serif;
+  display:inline-block; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:#63686E; border:1px solid #E1DFDA; padding:1px 7px; margin-left:7px;
+  vertical-align:1px;
+}
+
+footer {
+  background:#16181B; color:rgba(255,255,255,.55);
+  font-family:Arial, Helvetica, sans-serif; font-size:11.5px;
+  letter-spacing:.05em; padding:18px 0; margin-top:36px;
+  border-top:3px solid #C0783E;
+}
+footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+
+:focus-visible { outline:2px solid #C0783E; outline-offset:2px; }
+
+@media (max-width:720px) {
+  body { font-size:15px; }
+  .masthead h1 { font-size:25px; }
+  .profile { flex-direction:column; }
+  .profile img { width:146px; height:146px; }
+  .tabs .wrap { flex-direction:column; }
+  .tab { text-align:left; border-bottom:1px solid #D8D6D1; border-left:3px solid transparent; }
+  .tab.on { border-bottom-color:#D8D6D1; border-left-color:#C0783E; }
+  table.rec td.yr { width:108px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+
+<div class="topstrip"><div class="wrap">Personal Webpage</div></div>
+
+<div class="masthead">
+  <div class="wrap">
+    <div class="inst">Rajiv Gandhi Institute of Petroleum Technology &middot; Jais, Amethi</div>
+    <h1>Dr. Saurabh Bansal</h1>
+    <div class="sub">Assistant Professor &nbsp;&middot;&nbsp; Department of Mathematical Sciences</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="wrap" role="tablist" aria-label="Sections">
+      <button class="tab on" data-p="home" role="tab" aria-selected="true" aria-controls="p-home" id="t-home">Home</button>
+      <button class="tab" data-p="publications" role="tab" aria-selected="false" aria-controls="p-publications" id="t-publications">Publications</button>
+      <button class="tab" data-p="conferences" role="tab" aria-selected="false" aria-controls="p-conferences" id="t-conferences">Conferences</button>
+      <button class="tab" data-p="courses" role="tab" aria-selected="false" aria-controls="p-courses" id="t-courses">Courses</button>
+      <button class="tab" data-p="students" role="tab" aria-selected="false" aria-controls="p-students" id="t-students">Students</button>
+      <button class="tab" data-p="contact" role="tab" aria-selected="false" aria-controls="p-contact" id="t-contact">Contact</button>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <section class="panel on" id="p-home" role="tabpanel" aria-labelledby="t-home">
+    <div class="profile">
+      <img src="photo.jpg" alt="Dr. Saurabh Bansal">
+      <div class="who">
+        <h2 class="plain">Saurabh Bansal</h2>
+        <p class="role">Assistant Professor</p>
+        <p><a href="https://www.rgipt.ac.in/" target="_blank" rel="noopener">Rajiv Gandhi Institute of Petroleum Technology</a></p>
+        <p>Department of Mathematical Sciences</p>
+        <p>Jais, Amethi &ndash; 229304, Uttar Pradesh, India.</p>
+        <p><a href="mailto:saurabhbansal039@gmail.com">saurabhbansal039@gmail.com</a></p>
+        <p>+91-9166388312</p>
+        <div class="links">
+          <a href="#">Google Scholar</a>
+          <a href="#">ResearchGate</a>
+          <a href="#">ORCID</a>
+          <a href="#">MathSciNet</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <h2>Brief CV</h2>
+    <ul class="list">
+      <li><b>Assistant Professor</b>, Department of Mathematical Sciences,
+          Rajiv Gandhi Institute of Petroleum Technology (RGIPT), Jais, Amethi,
+          Aug. 2026 &ndash; present</li>
+      <li><b>Postdoctoral Fellow</b>, Department of Management Studies,
+          Indian Institute of Science (IISc), Bengaluru, Jan. 2026 &ndash; Aug. 2026</li>
+      <li><b>Assistant Professor</b>, University of Petroleum and Energy Studies (UPES),
+          Dehradun, Aug. 2025 &ndash; Jan. 2026</li>
+      <li><b>Ph.D. (Mathematics)</b>, Department of Mathematics, IIT Guwahati, 2020 &ndash; 2025.
+          Supervisor: Prof. Natesan Srinivasan. Thesis: <em>Numerical Strategies and Neural
+          Network Paradigms in Financial Decision-Making for Option Pricing</em>
+          (<b>Best Thesis Award</b>)</li>
+      <li><b>M.Sc. (Mathematics)</b>, IIT Bombay, 2018 &ndash; 2020</li>
+      <li><b>B.Sc. (Mathematics)</b>, Central University of Rajasthan, 2015 &ndash; 2018
+          (<b>University Topper</b>)</li>
+    </ul>
+
+    <h2>Research Areas</h2>
+    <ul class="list">
+      <li>Computational and Mathematical Finance</li>
+      <li>Numerical Analysis and Differential Equations</li>
+      <li>Numerical Methods for PDEs and Partial Integro-Differential Equations</li>
+      <li>Physics-Informed Neural Networks and Scientific Machine Learning</li>
+      <li>Neural Operators and Operator Learning for Parametric Problems</li>
+      <li>Option Pricing, Calibration and Inverse Problems</li>
+      <li>Data-Driven Modeling</li>
+    </ul>
+
+    <h2>Awards and Distinctions</h2>
+    <ul class="list">
+      <li><b>Best Thesis Award</b>, Department of Mathematics, IIT Guwahati, 28th Convocation, 2025</li>
+      <li><b>GATE</b> &ndash; All India Rank 91 in Mathematics, 2020</li>
+      <li><b>CSIR-JRF</b> &ndash; All India Rank 20 in Mathematical Sciences, 2019</li>
+      <li><b>IIT-JAM</b> &ndash; All India Rank 27 in Mathematics, 2018</li>
+      <li><b>University Topper</b> (2015 Batch), B.Sc., Central University of Rajasthan</li>
+      <li><b>INSPIRE Scholar</b>, top 1% of students, Rajasthan Senior Secondary Board, 2015 &ndash; 2020</li>
+    </ul>
+
+    </section>
+    <section class="panel" id="p-publications" role="tabpanel" aria-labelledby="t-publications" hidden>
+    <h2>Published Articles</h2>
+    <table class="rec">
+      <tr><td class="no">1.</td><td>S. Badireddi, S. Bansal, and S. Natesan, &ldquo;Numerical solution of passport option pricing problem with polynomial neural networks,&rdquo; <em>Computational Economics</em>, vol. 66, pp. 4695&ndash;4726, 2025.<span class="tag">Springer</span></td></tr>
+      <tr><td class="no">2.</td><td>S. Bansal, P. Boro, and S. Natesan, &ldquo;Application of physics informed neural networks to partial integro-differential equations in financial modeling and decision making,&rdquo; <em>Applied Soft Computing</em>, p. 114208, 2025.<span class="tag">Elsevier</span></td></tr>
+      <tr><td class="no">3.</td><td>S. Bansal, P. Boro, and S. Natesan, &ldquo;Physics-informed neural network for option pricing weather derivatives model,&rdquo; <em>Computers &amp; Mathematics with Applications</em>, vol. 200, pp. 1&ndash;21, 2025.<span class="tag">Elsevier</span></td></tr>
+      <tr><td class="no">4.</td><td>S. Bansal and S. Natesan, &ldquo;A novel higher-order efficient computational method for pricing European and Asian options,&rdquo; <em>Numerical Algorithms</em>, vol. 99, pp. 1127&ndash;1159, 2025.<span class="tag">Springer</span></td></tr>
+      <tr><td class="no">5.</td><td>S. Bansal and S. Natesan, &ldquo;A robust and effective numerical technique for solving Black&ndash;Scholes PDEs,&rdquo; <em>Current Progress in Interdisciplinary Research</em>, vol. 3, pp. 361&ndash;376, 2025.</td></tr>
+      <tr><td class="no">6.</td><td>S. Bansal and S. Natesan, &ldquo;A stabilized finite element method for solving Black&ndash;Scholes PDEs with applications to lookback options,&rdquo; <em>Indian Journal of Pure and Applied Mathematics</em>, pp. 1&ndash;19, 2025.<span class="tag">Springer</span></td></tr>
+      <tr><td class="no">7.</td><td>S. Bansal and S. Natesan, &ldquo;An accurate and stable numerical method for pricing Asian options,&rdquo; <em>Methodology and Computing in Applied Probability</em>, vol. 27, no. 2, p. 50, 2025.<span class="tag">Springer</span></td></tr>
+      <tr><td class="no">8.</td><td>S. Bansal and S. Natesan, &ldquo;An efficient and robust computational approach to passport option pricing PDEs,&rdquo; <em>Decisions in Economics and Finance</em>, vol. 48, pp. 1931&ndash;1956, 2025.<span class="tag">Springer</span></td></tr>
+      <tr><td class="no">9.</td><td>S. Bansal and S. Natesan, &ldquo;An efficient robust computational method for solving Black&ndash;Scholes PDEs,&rdquo; <em>Mathematical Communications</em>, vol. 30, no. 2, pp. 191&ndash;205, 2025.</td></tr>
+      <tr><td class="no">10.</td><td>S. Bansal and S. Natesan, &ldquo;An efficient fourth-order numerical scheme for nonlinear multi-asset option pricing problems,&rdquo; <em>Mediterranean Journal of Mathematics</em>, vol. 21, no. 7, p. 194, 2024.<span class="tag">Springer</span></td></tr>
+      <tr><td class="no">11.</td><td>S. Bansal and S. Natesan, &ldquo;Richardson extrapolation technique for generalized Black&ndash;Scholes PDEs for European options,&rdquo; <em>Computational and Applied Mathematics</em>, vol. 42, no. 5, p. 238, 2023.<span class="tag">Springer</span></td></tr>
+    </table>
+
+    <h2>Articles Under Review</h2>
+    <table class="rec">
+      <tr><td class="no">1.</td><td>S. Bansal and S. Natesan, &ldquo;Physics-informed neural networks for accurate pricing of American options under jump-diffusion models,&rdquo; under review, 2025.</td></tr>
+      <tr><td class="no">2.</td><td>S. Bansal and S. Natesan, &ldquo;Physics-informed neural networks: A new frontier in option pricing,&rdquo; under review, 2025.</td></tr>
+    </table>
+
+    <p class="note">Ten journal articles and one conference paper have been published;
+    two further manuscripts are currently under review. DOI links can be added to each entry.</p>
+
+    </section>
+    <section class="panel" id="p-conferences" role="tabpanel" aria-labelledby="t-conferences" hidden>
+    <h2>Conferences and Workshops</h2>
+    <table class="rec">
+      <tr><td class="yr">Feb 20&ndash;21, 2026</td><td><b>Organizing Committee Member, Second Edition of Symposium on Recent Trends in Quantitative Finance (RTQF 2026)</b><span class="sub">Department of Management Studies, Indian Institute of Science, Bengaluru, India</span></td></tr>
+      <tr><td class="yr">Jan 21&ndash;27, 2026</td><td><b>KIAC Winter School on <em>AI for Fintech</em></b><span class="sub">Kotak IISc AI-ML Centre, Indian Institute of Science, Bengaluru, India</span></td></tr>
+      <tr><td class="yr">Nov 10&ndash;15, 2025</td><td><b>Six-Day Residential Short-Term Programme on <em>Wavelet Analysis and Applications</em></b><span class="sub">Malaviya Mission Teacher Training Programme (MMTTP), India</span></td></tr>
+      <tr><td class="yr">Mar 04&ndash;06, 2025</td><td><b>3rd International Conference on Recent Advances in Applied Mathematics (RAAM 2025)</b><span class="sub">Centre for Mathematical Modelling, University of Colombo, Colombo, Sri Lanka</span></td></tr>
+      <tr><td class="yr">Sep 28&ndash;29, 2024</td><td><b>National Conference on Recent Advances in Mathematics and its Applications</b><span class="sub">Department of Mathematics, NIT Rourkela, Odisha, India</span></td></tr>
+      <tr><td class="yr">Aug 09&ndash;11, 2024</td><td><b>Scientifique &ndash; Oral Presentation, Research &amp; Industrial Conclave</b><span class="sub">Indian Institute of Technology Guwahati, Assam, India</span></td></tr>
+      <tr><td class="yr">Jan 18&ndash;21, 2024</td><td><b>Workshop cum International Symposium on <em>Complete Flux Scheme for Convection&ndash;Diffusion&ndash;Reaction Models, Fluid Flow and Allied Topics</em></b><span class="sub">Indian Institute of Technology Kanpur, Uttar Pradesh, India</span></td></tr>
+      <tr><td class="yr">Dec 22&ndash;24, 2023</td><td><b>38th Annual Conference of the Ramanujan Mathematical Society</b><span class="sub">Department of Mathematics, IIT Guwahati, Assam, India</span></td></tr>
+      <tr><td class="yr">Aug 03&ndash;05, 2023</td><td><b>6th International Conference on <em>Mathematical Modelling, Applied Analysis and Computation</em> (ICMMAAC&ndash;23)</b><span class="sub">JECRC University, Jaipur, Rajasthan, India</span></td></tr>
+      <tr><td class="yr">May 14&ndash;16, 2023</td><td><b>Scientifique &ndash; Oral Presentation, Research &amp; Industrial Conclave</b><span class="sub">Indian Institute of Technology Guwahati, Assam, India</span></td></tr>
+      <tr><td class="yr">Dec 22&ndash;23, 2022</td><td><b>National Conference on <em>Advances in Mathematical Sciences</em></b><span class="sub">Department of Mathematics, Gauhati University, Assam, India</span></td></tr>
+      <tr><td class="yr">Oct 15&ndash;16, 2022</td><td><b>2nd (Hybrid) International Conference on <em>Orthogonal Polynomials, Special Functions and Computer Algebra: Applications in Engineering</em></b><span class="sub">Anand International College of Engineering, Rajasthan, India</span></td></tr>
+      <tr><td class="yr">Apr 26 &ndash; May 02, 2022</td><td><b>One Week Training Programme on <em>Mathematical Modelling and Computing</em></b><span class="sub">Mizoram University, India</span></td></tr>
+      <tr><td class="yr">Sep 07&ndash;12, 2020</td><td><b>QIP Short-Term Course on <em>Differential Equations: Solution Techniques and Applications</em></b><span class="sub">Department of Mathematics, IIT Guwahati, India</span></td></tr>
+    </table>
+
+    </section>
+    <section class="panel" id="p-courses" role="tabpanel" aria-labelledby="t-courses" hidden>
+    <h2>Courses Taught</h2>
+
+    <h3>Instructor &ndash; UPES, Dehradun</h3>
+    <table class="rec">
+      <tr><td class="yr">Aug &ndash; Dec 2025</td><td><b>MATH 1059</b> &ndash; Advanced Engineering Mathematics I</td></tr>
+    </table>
+
+    <h3>Teaching Assistant &ndash; IIT Guwahati</h3>
+    <table class="rec">
+      <tr><td class="yr">Jul &ndash; Dec 2024</td><td><b>MA 201</b> &ndash; Complex Analysis and Partial Differential Equations</td></tr>
+      <tr><td class="yr">Jan &ndash; May 2024</td><td><b>MA 102</b> &ndash; Linear Algebra and Ordinary Differential Equations</td></tr>
+      <tr><td class="yr">Jul &ndash; Dec 2023</td><td><b>MA 473</b> &ndash; Computational Finance</td></tr>
+      <tr><td class="yr">Nov 2022 &ndash; Mar 2023</td><td><b>MA 101</b> &ndash; Real Analysis and Multivariable Calculus</td></tr>
+      <tr><td class="yr">Nov 2021 &ndash; Mar 2022</td><td><b>MA 101</b> &ndash; Real Analysis and Multivariable Calculus</td></tr>
+    </table>
+
+    <h2>Technical Skills</h2>
+    <ul class="list">
+      <li><b>Programming:</b> Python, MATLAB</li>
+      <li><b>Typesetting:</b> LaTeX</li>
+      <li><b>Languages:</b> English, Hindi</li>
+    </ul>
+
+    </section>
+    <section class="panel" id="p-students" role="tabpanel" aria-labelledby="t-students" hidden>
+    <h2>Research Students and Interns</h2>
+    <p>I supervise students and research interns working on numerical methods and
+    machine-learning approaches to option pricing, including operator learning and
+    physics-informed training strategies.</p>
+    <p class="note">Replace the sample rows below with your current group members.</p>
+    <table class="rec">
+      <tr><td class="yr">2026</td><td><b>Name</b><span class="sub">Project title &ndash; short description</span></td></tr>
+      <tr><td class="yr">2026</td><td><b>Name</b><span class="sub">Project title &ndash; short description</span></td></tr>
+    </table>
+
+    <h2>Opportunities</h2>
+    <p>I welcome enquiries from students interested in computational finance,
+    numerical analysis, or scientific machine learning. Please write to me with a
+    brief statement of interest and your CV.</p>
+
+    </section>
+    <section class="panel" id="p-contact" role="tabpanel" aria-labelledby="t-contact" hidden>
+    <h2>Contact</h2>
+    <table class="rec">
+      <tr><td class="yr">Address</td><td>Department of Mathematical Sciences<span class="sub">Rajiv Gandhi Institute of Petroleum Technology,<br>Jais, Amethi &ndash; 229304, Uttar Pradesh, India</span></td></tr>
+      <tr><td class="yr">Email</td><td><a href="mailto:saurabhbansal039@gmail.com">saurabhbansal039@gmail.com</a></td></tr>
+      <tr><td class="yr">Phone</td><td>+91-9166388312</td></tr>
+    </table>
+
+    <h2>Online Profiles</h2>
+    <table class="rec">
+      <tr><td class="yr">Google Scholar</td><td><a href="#">Add your profile link</a></td></tr>
+      <tr><td class="yr">ResearchGate</td><td><a href="#">Add your profile link</a></td></tr>
+      <tr><td class="yr">ORCID</td><td><a href="#">Add your profile link</a></td></tr>
+      <tr><td class="yr">MathSciNet</td><td><a href="#">Add your profile link</a></td></tr>
+      <tr><td class="yr">LinkedIn</td><td><a href="#">Add your profile link</a></td></tr>
+    </table>
+
+    <h2>References</h2>
+    <table class="rec">
+      <tr><td class="yr">Ph.D. Supervisor</td><td><b>Prof. Natesan Srinivasan</b><span class="sub">Professor, Department of Mathematics, IIT Guwahati<br>natesan@iitg.ac.in</span></td></tr>
+      <tr><td class="yr">Postdoc Mentor</td><td><b>Prof. Shashi Jain</b><span class="sub">Associate Professor &amp; Chair, Department of Management Studies, IISc Bengaluru<br>shashijain@iisc.ac.in</span></td></tr>
+    </table>
+
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr"></span> Dr. Saurabh Bansal</span>
+    <span>RGIPT, Jais, Amethi, Uttar Pradesh, India</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+(function(){
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  function show(id, push){
+    var found = false;
+    tabs.forEach(function(t){
+      var on = t.dataset.p === id;
+      if(on) found = true;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      var pan = document.getElementById('p-' + t.dataset.p);
+      if(pan) pan.hidden = !on;
+    });
+    if(!found) return;
+    if(push && history.replaceState) history.replaceState(null, '', '#' + id);
+    window.scrollTo(0, 0);
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.p, true); }); });
+  window.addEventListener('hashchange', function(){ show(location.hash.replace('#',''), false); });
+  if(location.hash) show(location.hash.replace('#',''), false);
+})();
+</script>
+</body>
+</html>
