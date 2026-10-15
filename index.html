@@ -219,7 +219,13 @@ table.rec em { color:#63686E; font-style:italic; }
   padding:8px 12px; cursor:pointer; transition:all .16s;
 }
 .cal-today:hover, .chip:hover { border-color:#C0783E; color:#2B3037; }
-.cal-filter { margin-left:auto; display:flex; gap:6px; flex-wrap:wrap; }
+.cal-fac {
+  margin-left:auto; max-width:250px;
+  font-family:Arial, Helvetica, sans-serif; font-size:11.5px; color:#2B3037;
+  border:1px solid #E1DFDA; background:#fff; padding:8px 10px; cursor:pointer;
+}
+.cal-fac:hover { border-color:#C0783E; }
+.cal-filter { flex-basis:100%; display:flex; gap:6px; flex-wrap:wrap; }
 .chip { display:inline-flex; align-items:center; gap:7px; }
 .chip::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--ot); }
 .chip[data-room="all"]::before { display:none; }
@@ -283,7 +289,17 @@ table.rec em { color:#63686E; font-style:italic; }
 .bk .r.lr { background:var(--lr); }
 .bk .r.cr { background:var(--cr); }
 .bk .p { font-size:14.5px; color:#1E2124; }
+.bk .f { display:block; font-size:13.5px; color:#3A3F45; margin-top:3px; }
+.bk .rep {
+  display:block; font-family:Arial, Helvetica, sans-serif; font-size:11px;
+  color:#63686E; letter-spacing:.02em; margin-top:2px;
+}
 .bk .w { display:block; font-size:12.5px; color:#63686E; margin-top:2px; }
+.bk .clash {
+  display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:9.5px;
+  letter-spacing:.12em; text-transform:uppercase; color:#A4432F;
+  border:1px solid #A4432F; padding:1px 6px; margin-left:8px; vertical-align:2px;
+}
 .free { color:#63686E; font-style:italic; font-size:14px; margin:4px 0; }
 .cal-status {
   font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#8E8F92;
@@ -316,7 +332,7 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
   .frame iframe.form { height:1100px; }
   .cal { padding:12px; }
   .cal-title { min-width:0; flex:1; }
-  .cal-filter { margin-left:0; width:100%; }
+  .cal-fac { margin-left:0; max-width:none; flex:1 1 100%; }
   .cal-cell { min-height:54px; padding:4px 2px; align-items:center; }
   .ev, .more { display:none; }
   .dots { display:flex; }
@@ -491,7 +507,7 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
     </section>
     <section class="panel" id="p-booking" role="tabpanel" aria-labelledby="t-booking" hidden>
     <h2>Room Booking</h2>
-    <p class="bk-lead">Reserve the <b>Lecture Room</b> or the <b>Conference Room</b> for classes, meetings, seminars and other departmental activities.</p>
+    <p class="bk-lead">Reserve the <b>Lecture Room</b> or the <b>Conference Room</b> for classes, meetings, seminars and other departmental activities. Regular classes can be booked once as a weekly series.</p>
 
     <div class="rooms">
       <div class="room">
@@ -520,8 +536,8 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
     <h3>How it works</h3>
     <div class="steps">
       <div class="step"><div class="n">Step 01</div><b>Check the calendar</b><span>Pick a day to see what is already booked in each room.</span></div>
-      <div class="step"><div class="n">Step 02</div><b>Submit the form</b><span>Enter the room, date and time you want to reserve.</span></div>
-      <div class="step"><div class="n">Step 03</div><b>You&rsquo;re booked</b><span>Your email and the booking time are recorded, and the slot shows on the calendar.</span></div>
+      <div class="step"><div class="n">Step 02</div><b>Submit the form</b><span>Choose your name, the room, date and time. For regular classes, set it to repeat weekly.</span></div>
+      <div class="step"><div class="n">Step 03</div><b>You&rsquo;re booked</b><span>Your booking is recorded and every session shows on the calendar.</span></div>
     </div>
 
     <h3>Schedule</h3>
@@ -536,6 +552,7 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
           <div class="cal-title" id="cal-title" aria-live="polite"></div>
           <button type="button" class="cal-nav" id="cal-next" aria-label="Next month">&#8250;</button>
           <button type="button" class="cal-today" id="cal-today">Today</button>
+          <select class="cal-fac" id="cal-fac" aria-label="Filter by faculty"></select>
           <div class="cal-filter" role="group" aria-label="Filter by room">
             <button type="button" class="chip on" data-room="all">All rooms</button>
             <button type="button" class="chip" data-room="lr">Lecture Room</button>
@@ -557,7 +574,7 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
       <iframe class="form" src="https://docs.google.com/forms/d/e/1FAIpQLSe-E1Xua6Sfy6lHLaqsZb9ZddSha3rhoE3YVHnZmYz2JETg5A/viewform?embedded=true" title="Room booking form" loading="lazy">Loading&hellip;</iframe>
     </div>
 
-    <div class="note"><b>Please note:</b> the calendar can take a few minutes to refresh after a new booking. For changes or cancellations, write to <a href="mailto:sbansal@rgipt.ac.in">sbansal@rgipt.ac.in</a>.</div>
+    <div class="note"><b>Please note:</b> the calendar can take a few minutes to refresh after a new booking. For changes or cancellations, including ending a recurring class early, write to <a href="mailto:sbansal@rgipt.ac.in">sbansal@rgipt.ac.in</a>.</div>
 
     </section>
     <section class="panel" id="p-contact" role="tabpanel" aria-labelledby="t-contact" hidden>
@@ -605,14 +622,28 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ---------- Room booking calendar ---------- */
 (function(){
-  /* Settings */
+  /* ===== Settings ===== */
   var CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuxHxFO5U-3vH6Nk_fjZnhHmhn0sGZfLcWpRF7FI-Q3trUJqa9UaTQzxW2ho4N9WeZeWsuRnuIDRqD/pub?gid=414153602&single=true&output=csv';
   var LIST_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuxHxFO5U-3vH6Nk_fjZnhHmhn0sGZfLcWpRF7FI-Q3trUJqa9UaTQzxW2ho4N9WeZeWsuRnuIDRqD/pubhtml?gid=414153602&single=true';
   var DATE_ORDER = 'DMY';   /* change to 'MDY' if the sheet writes dates as month/day/year */
-  var SHOW_BOOKER = false;  /* true = show the booker's name/email publicly on the calendar */
+  var SHOW_BOOKER = false;  /* true = show the booker's name/email publicly */
+  var DEFAULT_WEEKS = 16;   /* length of a recurring series when "Repeat until" is left blank */
+  var FACULTY = [
+    'Professor Chanchal Kundu',
+    'Dr Dhrubasish Bhattacharyya',
+    'Dr Gobinda Rakshit',
+    'Dr Manoj Kumar Rajpoot',
+    'Dr Pradeep Das',
+    'Dr Soniya Dhama',
+    'Dr Sudeep Kundu',
+    'Dr Saurabh Bansal',
+    'Dr Ritu Nigam'
+  ];
+  /* ==================== */
 
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var WD = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var DAY_RE = [/mon/, /tue/, /wed/, /thu/, /fri/, /sat/, /sun/];
   var ROOM_NAME = { lr:'Lecture Room', cr:'Conference Room', ot:'Room' };
 
   var grid = document.getElementById('cal-grid');
@@ -620,19 +651,36 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   var title = document.getElementById('cal-title');
   var dayBox = document.getElementById('cal-day');
   var status = document.getElementById('cal-status');
+  var facSel = document.getElementById('cal-fac');
 
   var today = new Date(); today.setHours(0,0,0,0);
   var view = new Date(today.getFullYear(), today.getMonth(), 1);
   var selected = new Date(today.getTime());
-  var filter = 'all';
+  var filter = 'all', facFilter = 'all';
   var byDay = {};
 
   function key(d){ return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(); }
   function same(a, b){ return a.getTime() === b.getTime(); }
+  function addDays(d, n){ return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function wdIndex(d){ return (d.getDay() + 6) % 7; }
+  function norm(s){ return (s || '').toLowerCase().replace(/[^a-z]/g, ''); }
+  function fmtDate(d){ return d.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }); }
   function esc(s){
     return String(s).replace(/[&<>"']/g, function(c){
       return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
     });
+  }
+
+  function fillFaculty(extra){
+    var names = FACULTY.slice();
+    (extra || []).forEach(function(n){
+      if(n && names.map(norm).indexOf(norm(n)) < 0) names.push(n);
+    });
+    facSel.innerHTML = '<option value="all">All faculty</option>' + names.map(function(n){
+      return '<option value="' + esc(norm(n)) + '">' + esc(n) + '</option>';
+    }).join('');
+    facSel.value = facFilter;
+    if(facSel.value !== facFilter){ facFilter = 'all'; facSel.value = 'all'; }
   }
 
   function parseCSV(text){
@@ -700,9 +748,37 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     return short ? h12 + (m ? ':' + mm : '') + ap : h12 + ':' + mm + ' ' + ap.toUpperCase();
   }
 
+  /* 0 = no repeat, 1 = every week, 2 = every 2 weeks */
+  function interval(s){
+    s = (s || '').toLowerCase().trim();
+    if(!s || /not|none|\bno\b|once|single/.test(s)) return 0;
+    if(/2|two|fortnight|alternate|other/.test(s)) return 2;
+    if(/week|yes|repeat/.test(s)) return 1;
+    return 0;
+  }
+
+  function weekdays(s){
+    s = (s || '').toLowerCase();
+    var out = [];
+    DAY_RE.forEach(function(re, i){ if(re.test(s)) out.push(i); });
+    return out;
+  }
+
   function on(d){
-    var list = byDay[key(d)] || [];
-    return filter === 'all' ? list : list.filter(function(e){ return e.rk === filter; });
+    return (byDay[key(d)] || []).filter(function(e){
+      return (filter === 'all' || e.rk === filter) &&
+             (facFilter === 'all' || norm(e.fac) === facFilter);
+    });
+  }
+
+  function clashes(e, list){
+    if(e.rk === 'ot' || e.s == null) return false;
+    var eEnd = e.e != null ? e.e : e.s + 60;
+    return list.some(function(o){
+      if(o === e || o.rk !== e.rk || o.s == null) return false;
+      var oEnd = o.e != null ? o.e : o.s + 60;
+      return e.s < oEnd && o.s < eEnd;
+    });
   }
 
   function load(rows){
@@ -711,13 +787,17 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     var h = rows[0];
     var c = {
       room:  col(h, /room|venue|hall/),
-      date:  col(h, /date|\bday\b/, /timestamp/),
-      start: col(h, /start|\bfrom\b|begin/, /date/),
-      end:   col(h, /\bend|\bto\b|till|until|finish/, /date/),
-      slot:  col(h, /time|slot|period/, /timestamp|start|end|date/),
+      date:  col(h, /date|\bday\b/, /timestamp|repeat|recur|until|end date|last date/),
+      start: col(h, /start|\bfrom\b|begin/, /date|repeat/),
+      end:   col(h, /\bend|\bto\b|till|until|finish/, /date|repeat|recur/),
+      slot:  col(h, /time|slot|period/, /timestamp|start|end|date|repeat/),
       what:  col(h, /purpose|title|event|activity|course|subject|topic|description|reason|agenda/),
-      who:   col(h, /name/, /room|course|event/),
-      mail:  col(h, /e-?mail/)
+      fac:   col(h, /faculty|professor|instructor|teacher/),
+      who:   col(h, /name/, /room|course|event|faculty/),
+      mail:  col(h, /e-?mail/),
+      rep:   col(h, /repeat|recur|frequency/, /until|till|\bon\b|days|end/),
+      repOn: col(h, /(repeat|recur).*\b(on|days?)\b|which days|days of (the )?week/),
+      repTo: col(h, /(repeat|recur).*(until|till|end)|^until|end date|last date/)
     };
     if(c.date < 0){
       status.textContent = 'Could not find a date column in the schedule sheet. Columns found: ' + h.join(', ');
@@ -725,7 +805,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
       return;
     }
     byDay = {};
-    var n = 0;
+    var n = 0, nRec = 0, facSeen = [];
     rows.slice(1).forEach(function(r){
       var d = parseDate(r[c.date]);
       if(!d) return;
@@ -737,6 +817,31 @@ document.getElementById('yr').textContent = new Date().getFullYear();
       if(c.end >= 0 && t.length) t = t.concat(times(r[c.end]).slice(0,1));
       if(!t.length && c.slot >= 0){ raw = (r[c.slot] || '').trim(); t = times(raw); }
       if(!t.length) t = times(r[c.date]);
+      var fac = c.fac >= 0 ? (r[c.fac] || '').trim() : '';
+      if(fac) facSeen.push(fac);
+
+      /* recurring series */
+      var dates = [d], recLabel = '';
+      var iv = c.rep >= 0 ? interval(r[c.rep]) : 0;
+      if(iv){
+        var lim = (c.repTo >= 0 ? parseDate(r[c.repTo]) : null) || addDays(d, DEFAULT_WEEKS*7 - 1);
+        var hard = addDays(d, 366);
+        if(lim > hard) lim = hard;
+        var wds = c.repOn >= 0 ? weekdays(r[c.repOn]) : [];
+        if(!wds.length) wds = [wdIndex(d)];
+        var ws = addDays(d, -wdIndex(d));
+        dates = [];
+        for(var w = 0; addDays(ws, w*7) <= lim; w += iv){
+          wds.forEach(function(x){
+            var dd = addDays(ws, w*7 + x);
+            if(dd >= d && dd <= lim) dates.push(dd);
+          });
+        }
+        recLabel = (iv === 2 ? 'Every 2 weeks' : 'Weekly') + ' on ' +
+                   wds.map(function(x){ return WD[x]; }).join(', ') + ' until ' + fmtDate(lim);
+        nRec++;
+      }
+
       var ev = {
         rk: rk,
         room: roomTxt || ROOM_NAME[rk],
@@ -744,16 +849,22 @@ document.getElementById('yr').textContent = new Date().getFullYear();
         e: t.length > 1 ? t[1] : null,
         raw: raw,
         what: c.what >= 0 ? (r[c.what] || '').trim() : '',
+        fac: fac,
+        rec: recLabel,
         who: [c.who >= 0 ? r[c.who] : '', c.mail >= 0 ? r[c.mail] : ''].filter(Boolean).join(' \u00b7 ')
       };
-      var k = key(d);
-      (byDay[k] = byDay[k] || []).push(ev);
+      dates.forEach(function(dd){
+        var k = key(dd);
+        (byDay[k] = byDay[k] || []).push(ev);
+      });
       n++;
     });
     Object.keys(byDay).forEach(function(k){
       byDay[k].sort(function(a, b){ return (a.s == null ? 9999 : a.s) - (b.s == null ? 9999 : b.s); });
     });
-    status.textContent = n + ' booking' + (n === 1 ? '' : 's') + ' loaded from the schedule.';
+    fillFaculty(facSeen);
+    status.textContent = n + ' booking' + (n === 1 ? '' : 's') + ' loaded' +
+                         (nRec ? ', including ' + nRec + ' recurring' : '') + '.';
     status.classList.remove('err');
     render();
   }
@@ -771,8 +882,9 @@ document.getElementById('yr').textContent = new Date().getFullYear();
       var cls = 'cal-cell' + (d.getMonth() !== mo ? ' out' : '') +
                 (same(d, today) ? ' today' : '') + (same(d, selected) ? ' sel' : '');
       var chips = evs.slice(0,3).map(function(e){
-        var label = (e.s != null ? ft(e.s, true) + ' ' : '') + (e.what || e.room);
-        return '<span class="ev ' + e.rk + '" title="' + esc(e.room + (e.what ? ' \u2013 ' + e.what : '')) + '">' + esc(label) + '</span>';
+        var label = (e.rec ? '\u21bb ' : '') + (e.s != null ? ft(e.s, true) + ' ' : '') + (e.what || e.fac || e.room);
+        var tip = e.room + (e.what ? ' \u2013 ' + e.what : '') + (e.fac ? ' (' + e.fac + ')' : '');
+        return '<span class="ev ' + e.rk + '" title="' + esc(tip) + '">' + esc(label) + '</span>';
       }).join('');
       if(evs.length > 3) chips += '<span class="more">+' + (evs.length - 3) + ' more</span>';
       var dots = evs.length ? '<span class="dots">' + evs.slice(0,4).map(function(e){ return '<i class="' + e.rk + '"></i>'; }).join('') + '</span>' : '';
@@ -785,6 +897,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   }
 
   function renderDay(){
+    var all = byDay[key(selected)] || [];
     var evs = on(selected);
     var head = selected.toLocaleDateString('en-IN', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
     var body = evs.length ? evs.map(function(e){
@@ -792,6 +905,9 @@ document.getElementById('yr').textContent = new Date().getFullYear();
       return '<div class="bk"><div class="t">' + esc(t) + '</div><div>' +
              '<span class="r ' + e.rk + '">' + esc(e.room) + '</span>' +
              '<span class="p">' + esc(e.what || 'Booked') + '</span>' +
+             (clashes(e, all) ? '<span class="clash">Clash</span>' : '') +
+             (e.fac ? '<span class="f">' + esc(e.fac) + '</span>' : '') +
+             (e.rec ? '<span class="rep">\u21bb ' + esc(e.rec) + '</span>' : '') +
              (SHOW_BOOKER && e.who ? '<span class="w">' + esc(e.who) + '</span>' : '') +
              '</div></div>';
     }).join('') : '<p class="free">Nothing booked on this day.</p>';
@@ -823,7 +939,9 @@ document.getElementById('yr').textContent = new Date().getFullYear();
       render();
     });
   });
+  facSel.addEventListener('change', function(){ facFilter = facSel.value; render(); });
 
+  fillFaculty();
   render();
   fetch(CSV_URL, { cache:'no-store' })
     .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
